@@ -6,19 +6,20 @@ on:
       - main
 
 jobs:
-  copy_to_prod:
+  setup_copy_to_prod:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     - name: Create prod directory
       run: mkdir -p prod
 
+  perform_copy_to_prod:
+    runs-on: ubuntu-latest
+    steps:
     - name: Copy file to prod
       run: |
-        cp dev prod
+        cp dev/test.txt prod/test.txt
 
     - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v4
