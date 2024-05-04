@@ -1,4 +1,4 @@
-name: Copy File to Prod
+name: Copy file from dev to prod
 
 on:
   push:
