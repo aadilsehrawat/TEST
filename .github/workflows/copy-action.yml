@@ -1,0 +1,27 @@
+name: Copy File to Prod
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  copy_to_prod:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Copy file to prod
+      run: |
+        cp dev/test.txt ../prod/test.txt
+      # This assumes your production environment is one directory above the current directory.
+      # If not, adjust the path accordingly.
+
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Copy test.txt to prod"
+        commit_user_name: "GitHub Actions"
+        commit_user_email: "actions@github.com"
