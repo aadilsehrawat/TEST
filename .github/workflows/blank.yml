@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "dev" ]  # Trigger on pushes to both main and dev branches
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Sync dev branch with main branch
+      - name: Sync dev with main
+        run: |
+          git checkout main
+          git pull origin main
+          git checkout dev
+          git merge main
+          git push origin dev
+
+      # Other steps for building, testing, and deploying can go here
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
