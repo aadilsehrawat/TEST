@@ -18,7 +18,7 @@ jobs:
 
     - name: Copy file to prod
       run: |
-        cp dev/test.txt prod/test.txt
+        cp dev prod
 
     - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v4
