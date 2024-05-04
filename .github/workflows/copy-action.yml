@@ -13,11 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Create prod directory
+      run: mkdir -p prod
+
     - name: Copy file to prod
       run: |
-        cp dev/test.txt ../prod/test.txt
-      # This assumes your production environment is one directory above the current directory.
-      # If not, adjust the path accordingly.
+        cp dev/test.txt prod/test.txt
 
     - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v4
