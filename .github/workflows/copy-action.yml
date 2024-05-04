@@ -16,6 +16,7 @@ jobs:
 
   perform_copy_to_prod:
     runs-on: ubuntu-latest
+    needs: setup_copy_to_prod  # Make perform_copy_to_prod wait for setup_copy_to_prod to finish
     steps:
     - name: Copy file to prod
       run: |
